@@ -13,21 +13,26 @@ public class TreeNode {
     private List<TreeNode> children;
     private Constants.MOVE label;
 
-    public TreeNode(Attribute attribute) {
-        this.attribute = attribute;
+    public TreeNode() {
         this.children = new ArrayList<TreeNode>();
     }
 
-    public TreeNode addChild(Attribute attribute) {
-        TreeNode childNode = new TreeNode(attribute);
+    public void addChildNode(TreeNode childNode) {
         childNode.parent = this;
         this.children.add(childNode);
-        return childNode;
     }
 
     //Is used if all tuples in the parent node has the same value
     public void makeLeafNode(Constants.MOVE label){
         this.label = label;
+    }
+
+    public Constants.MOVE getLabel() {
+        return label;
+    }
+
+    public void setAttribute(Attribute chosenAttribute) {
+        this.attribute = chosenAttribute;
     }
 }
 
