@@ -4,8 +4,10 @@ import dataRecording.Attribute;
 import dataRecording.DataTuple;
 import pacman.game.Constants;
 import pacman.game.Game;
-
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 import static dataRecording.DataSaverLoader.LoadPacManData;
 
@@ -13,6 +15,8 @@ public class PacManAIController extends Controller<Constants.MOVE> {
 
     private ArrayList<Attribute> attributes;
 
+    //TODO: Should build tree BEFORE starting! Once I have the tree, then start traversing the tree using the gameState.
+//Right now I don't use the game state?
     public PacManAIController() {
         this.attributes = new ArrayList<>();
         ArrayList<String> scoreConditions = new ArrayList<String>();
@@ -61,7 +65,7 @@ public class PacManAIController extends Controller<Constants.MOVE> {
         ArrayList<String> conditions = chosenAttribute.getConditions();
         for (String condition : conditions) {
             // a) Separate all tuples in D so that attribute A takes the value aj, creating the subset Dj.
-            DataTuple[] subsetD = getSubsetBasedOnAttributeValue(condition);
+            DataTuple[] subsetD = getSubsetBasedOnAttributeValue(dataTuples, condition);
             // b) If Dj is empty, add a child node to N labeled with the majority class in D.
             TreeNode newNode;
             if (subsetD.length == 0) {
@@ -79,22 +83,42 @@ public class PacManAIController extends Controller<Constants.MOVE> {
         return node;
     }
 
-    private DataTuple[] getSubsetBasedOnAttributeValue(String condition) {
-     /*  Create a helper method that subdivide (partition)
-                datasets based on attributes value → Test this good!*/
-        return new DataTuple[3];
-    }
-
-    private Constants.MOVE getMostCommonLabel(DataTuple[] dataTuples) {
+    private DataTuple[] getSubsetBasedOnAttributeValue(DataTuple[] tuples, String condition) {
+     /*  Create a helper method that subdivide (partition) datasets based on attributes value.
+        //This method should find all the tuples that match the condition.
+        //Then return a subset with all the tuples that do.
+        return new DataTuple[3];*/
         return null;
     }
 
+    private Constants.MOVE getMostCommonLabel(DataTuple[] dataTuples) {
+        //This method should search through all tuples and find the most common label (direction)
+        HashMap<Constants.MOVE, Integer> labels = new HashMap<>();
+        for(DataTuple tuple: dataTuples){
+            Constants.MOVE label = tuple.getDirection();
+            if(!labels.containsKey(label)) {
+                labels.put(label, 1);
+            }
+            else{
+                int count = labels.get(label);
+                labels.put(label, count + 1);
+            }
+        }
+        //find key with the highest value (find labels that describe most tuples)
+        return labels.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+    }
+
     private boolean hasSameLabels(DataTuple[] dataTuples) {
+        Constants.MOVE firstDirection = dataTuples[0].getDirection();
+        for(int i = 1; i < dataTuples.length; i++){
+            if(dataTuples[0].getDirection() != firstDirection) return false;
+        }
         return true;
     }
 
     private Attribute attributeSelectionMethod(DataTuple[] dataset, ArrayList<Attribute> attribute) {
         //TODO: Create a real attribute selection method --> function for calc max benefit. AKA calc information Gain.
+        //OBS: Find one on internet.
         return attributes.get(1);
     }
 }
