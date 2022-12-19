@@ -6,6 +6,11 @@ import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
 import pacman.game.Game;
 
+/*
+In this class I've started to filter out some attributes.
+TODO: In here we shoul discretize, combine attributes, gather new ones etc.
+ */
+
 public class DataTuple {
 
 	public enum DiscreteTag {

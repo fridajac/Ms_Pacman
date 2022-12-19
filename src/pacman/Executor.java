@@ -11,10 +11,7 @@ import java.util.EnumMap;
 import java.util.Random;
 
 import dataRecording.DataCollectorController;
-import pacman.controllers.Controller;
-import pacman.controllers.HumanController;
-import pacman.controllers.KeyBoardInput;
-import pacman.controllers.PacManAIController;
+import pacman.controllers.*;
 import pacman.controllers.examples.AggressiveGhosts;
 import pacman.controllers.examples.Legacy;
 import pacman.controllers.examples.Legacy2TheReckoning;
@@ -47,7 +44,7 @@ public class Executor
 	public static void main(String[] args)
 	{
 		Executor exec=new Executor();
-
+		AIController aiController = new AIController();
 		
 		//run multiple games in batch mode - good for testing.
 		int numTrials=10;
