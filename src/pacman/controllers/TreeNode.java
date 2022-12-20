@@ -9,12 +9,17 @@ import java.util.List;
 public class TreeNode {
 
     private Attribute attribute;
-    private TreeNode parent;
+    private TreeNode parent = null;
     private List<TreeNode> children;
     private Constants.MOVE label;
 
     public TreeNode() {
         this.children = new ArrayList<TreeNode>();
+    }
+
+    public List<TreeNode> getChildren() {
+        if(children.isEmpty()) return null;
+        return children;
     }
 
     public void addChildNode(TreeNode childNode) {
@@ -35,7 +40,14 @@ public class TreeNode {
         this.attribute = chosenAttribute;
     }
 
-    public void printSubTree() {
+    public void printSubTree(int level) {
+        for (int i = 1; i < level; i++) {
+            System.out.print("\t");
+        }
+        System.out.println("node");
+        for (TreeNode child : children) {
+            child.printSubTree(level + 1);
+        }
     }
 }
 

@@ -16,10 +16,11 @@ import static dataRecording.DataSaverLoader.LoadPacManData;
 public class AIController {
 
     private final ArrayList<Attribute> attributes;
+    private TreeNode decisionTree = null;
 
     public AIController() {
         DataTuple[] data = LoadPacManData();
-        //Divide data set in: 80% training data. This is used to create decision tree.
+        //Divide data set in: 80% training data and 20% testing data. Training data is used to create decision tree.
         ArrayList<DataTuple> tuples = new ArrayList<>(Arrays.asList(data));
         int calcPercentage = (int) (data.length * 0.8);
 
@@ -31,11 +32,14 @@ public class AIController {
             else testingData.add(tuples.get(i));
         }
 
+        //create all attributes
         this.attributes = createAttributes();
 
         //generate tree
-        TreeNode rootNode = generateTree(trainingData, attributes);
-        rootNode.printSubTree();
+        decisionTree = generateTree(trainingData, attributes);
+
+        //print tree
+        decisionTree.printSubTree(1);
 
         // use the training data to test accuracy
         printAccuracy(trainingData, "training");
@@ -45,7 +49,7 @@ public class AIController {
     }
 
     /**
-    Method that creates attributes with different conditions
+     * Method that creates attributes with different conditions
      */
     private ArrayList<Attribute> createAttributes() {
         ArrayList<Attribute> attributes = new ArrayList<>();
@@ -59,7 +63,7 @@ public class AIController {
     }
 
     /**
-    Method to print accuracy from either training och testing dataset
+     * Method to print accuracy from either training och testing dataset
      */
     private void printAccuracy(ArrayList<DataTuple> data, String typeOfDataset) {
         int numberOfCorrectPrediction = 0;
@@ -76,8 +80,12 @@ public class AIController {
     /**
      * Method to use decision tree to classify a sample
      */
-    public static Constants.MOVE classify(DataTuple sample) {
-        //TODO We should traverse the tree using the game state from sample!
+    public Constants.MOVE classify(DataTuple sample) {
+
+        if(decisionTree.getChildren() == null){
+            return decisionTree.getLabel();
+        }
+        //TODO We should traverse the tree using the game state from sample. How?
         return null;
     }
 
