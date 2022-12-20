@@ -6,11 +6,6 @@ import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
 import pacman.game.Game;
 
-/*
-In this class I've started to filter out some attributes.
-TODO: In here we shoul discretize, combine attributes, gather new ones etc.
- */
-
 public class DataTuple {
 
 	public enum DiscreteTag {
@@ -28,14 +23,6 @@ public class DataTuple {
 			else
 				return DiscreteTag.VERY_HIGH;
 		}
-	}
-
-	public int getCurrentScore() {
-		return currentScore;
-	}
-
-	public MOVE getDirection() {
-		return DirectionChosen;
 	}
 
 	public MOVE DirectionChosen;
@@ -120,66 +107,69 @@ public class DataTuple {
 		this.numberOfTotalPowerPillsInLevel = game.getNumberOfPowerPills();
 	}
 
+	public DataTuple(int currentScore) {
+		this.currentScore = currentScore;
+	}
+
 	public DataTuple(String data) {
 		String[] dataSplit = data.split(";");
 
 		this.DirectionChosen = MOVE.valueOf(dataSplit[0]);
-		this.currentScore = Integer.parseInt(dataSplit[1]);
-//
-//		this.mazeIndex = Integer.parseInt(dataSplit[1]);
-//		this.currentLevel = Integer.parseInt(dataSplit[2]);
-//		this.pacmanPosition = Integer.parseInt(dataSplit[3]);
-//		this.pacmanLivesLeft = Integer.parseInt(dataSplit[4]);
 
-//		this.totalGameTime = Integer.parseInt(dataSplit[6]);
-//		this.currentLevelTime = Integer.parseInt(dataSplit[7]);
-//		this.numOfPillsLeft = Integer.parseInt(dataSplit[8]);
-//		this.numOfPowerPillsLeft = Integer.parseInt(dataSplit[9]);
-//		this.isBlinkyEdible = Boolean.parseBoolean(dataSplit[10]);
-//		this.isInkyEdible = Boolean.parseBoolean(dataSplit[11]);
-//		this.isPinkyEdible = Boolean.parseBoolean(dataSplit[12]);
-//		this.isSueEdible = Boolean.parseBoolean(dataSplit[13]);
-//		this.blinkyDist = Integer.parseInt(dataSplit[14]);
-//		this.inkyDist = Integer.parseInt(dataSplit[15]);
-//		this.pinkyDist = Integer.parseInt(dataSplit[16]);
-//		this.sueDist = Integer.parseInt(dataSplit[17]);
-//		this.blinkyDir = MOVE.valueOf(dataSplit[18]);
-//		this.inkyDir = MOVE.valueOf(dataSplit[19]);
-//		this.pinkyDir = MOVE.valueOf(dataSplit[20]);
-//		this.sueDir = MOVE.valueOf(dataSplit[21]);
-//		this.numberOfNodesInLevel = Integer.parseInt(dataSplit[22]);
-//		this.numberOfTotalPillsInLevel = Integer.parseInt(dataSplit[23]);
-//		this.numberOfTotalPowerPillsInLevel = Integer.parseInt(dataSplit[24]);
+		this.mazeIndex = Integer.parseInt(dataSplit[1]);
+		this.currentLevel = Integer.parseInt(dataSplit[2]);
+		this.pacmanPosition = Integer.parseInt(dataSplit[3]);
+		this.pacmanLivesLeft = Integer.parseInt(dataSplit[4]);
+		this.currentScore = Integer.parseInt(dataSplit[5]);
+		this.totalGameTime = Integer.parseInt(dataSplit[6]);
+		this.currentLevelTime = Integer.parseInt(dataSplit[7]);
+		this.numOfPillsLeft = Integer.parseInt(dataSplit[8]);
+		this.numOfPowerPillsLeft = Integer.parseInt(dataSplit[9]);
+		this.isBlinkyEdible = Boolean.parseBoolean(dataSplit[10]);
+		this.isInkyEdible = Boolean.parseBoolean(dataSplit[11]);
+		this.isPinkyEdible = Boolean.parseBoolean(dataSplit[12]);
+		this.isSueEdible = Boolean.parseBoolean(dataSplit[13]);
+		this.blinkyDist = Integer.parseInt(dataSplit[14]);
+		this.inkyDist = Integer.parseInt(dataSplit[15]);
+		this.pinkyDist = Integer.parseInt(dataSplit[16]);
+		this.sueDist = Integer.parseInt(dataSplit[17]);
+		this.blinkyDir = MOVE.valueOf(dataSplit[18]);
+		this.inkyDir = MOVE.valueOf(dataSplit[19]);
+		this.pinkyDir = MOVE.valueOf(dataSplit[20]);
+		this.sueDir = MOVE.valueOf(dataSplit[21]);
+		this.numberOfNodesInLevel = Integer.parseInt(dataSplit[22]);
+		this.numberOfTotalPillsInLevel = Integer.parseInt(dataSplit[23]);
+		this.numberOfTotalPowerPillsInLevel = Integer.parseInt(dataSplit[24]);
 	}
 
 	public String getSaveString() {
 		StringBuilder stringbuilder = new StringBuilder();
 
-//		stringbuilder.append(this.DirectionChosen + ";");
-//		stringbuilder.append(this.mazeIndex + ";");
-//		stringbuilder.append(this.currentLevel + ";");
-//		stringbuilder.append(this.pacmanPosition + ";");
-//		stringbuilder.append(this.pacmanLivesLeft + ";");
+		stringbuilder.append(this.DirectionChosen + ";");
+		stringbuilder.append(this.mazeIndex + ";");
+		stringbuilder.append(this.currentLevel + ";");
+		stringbuilder.append(this.pacmanPosition + ";");
+		stringbuilder.append(this.pacmanLivesLeft + ";");
 		stringbuilder.append(this.currentScore + ";");
-//		stringbuilder.append(this.totalGameTime + ";");
-//		stringbuilder.append(this.currentLevelTime + ";");
-//		stringbuilder.append(this.numOfPillsLeft + ";");
-//		stringbuilder.append(this.numOfPowerPillsLeft + ";");
-//		stringbuilder.append(this.isBlinkyEdible + ";");
-//		stringbuilder.append(this.isInkyEdible + ";");
-//		stringbuilder.append(this.isPinkyEdible + ";");
-//		stringbuilder.append(this.isSueEdible + ";");
-//		stringbuilder.append(this.blinkyDist + ";");
-//		stringbuilder.append(this.inkyDist + ";");
-//		stringbuilder.append(this.pinkyDist + ";");
-//		stringbuilder.append(this.sueDist + ";");
-//		stringbuilder.append(this.blinkyDir + ";");
-//		stringbuilder.append(this.inkyDir + ";");
-//		stringbuilder.append(this.pinkyDir + ";");
-//		stringbuilder.append(this.sueDir + ";");
-//		stringbuilder.append(this.numberOfNodesInLevel + ";");
-//		stringbuilder.append(this.numberOfTotalPillsInLevel + ";");
-//		stringbuilder.append(this.numberOfTotalPowerPillsInLevel + ";");
+		stringbuilder.append(this.totalGameTime + ";");
+		stringbuilder.append(this.currentLevelTime + ";");
+		stringbuilder.append(this.numOfPillsLeft + ";");
+		stringbuilder.append(this.numOfPowerPillsLeft + ";");
+		stringbuilder.append(this.isBlinkyEdible + ";");
+		stringbuilder.append(this.isInkyEdible + ";");
+		stringbuilder.append(this.isPinkyEdible + ";");
+		stringbuilder.append(this.isSueEdible + ";");
+		stringbuilder.append(this.blinkyDist + ";");
+		stringbuilder.append(this.inkyDist + ";");
+		stringbuilder.append(this.pinkyDist + ";");
+		stringbuilder.append(this.sueDist + ";");
+		stringbuilder.append(this.blinkyDir + ";");
+		stringbuilder.append(this.inkyDir + ";");
+		stringbuilder.append(this.pinkyDir + ";");
+		stringbuilder.append(this.sueDir + ";");
+		stringbuilder.append(this.numberOfNodesInLevel + ";");
+		stringbuilder.append(this.numberOfTotalPillsInLevel + ";");
+		stringbuilder.append(this.numberOfTotalPowerPillsInLevel + ";");
 
 		return stringbuilder.toString();
 	}
@@ -188,7 +178,7 @@ public class DataTuple {
 	 * Used to normalize distances. Done via min-max normalization. Supposes
 	 * that minimum possible distance is 0. Supposes that the maximum possible
 	 * distance is 150.
-	 * 
+	 *
 	 * @param dist
 	 *            Distance to be normalized
 	 * @return Normalized distance
@@ -223,6 +213,14 @@ public class DataTuple {
 		} else {
 			return 0.0;
 		}
+	}
+
+	public MOVE getDirectionChosen() {
+		return DirectionChosen;
+	}
+
+	public int getCurrentScore() {
+		return currentScore;
 	}
 
 	public double normalizeNumberOfPills(int numOfPills) {
@@ -262,10 +260,10 @@ public class DataTuple {
 	}
 
 	/**
-	 * 
+	 *
 	 * Max score value lifted from highest ranking PacMan controller on PacMan
 	 * vs Ghosts website: http://pacman-vs-ghosts.net/controllers/1104
-	 * 
+	 *
 	 * @param score
 	 * @return
 	 */
@@ -277,5 +275,4 @@ public class DataTuple {
 		double aux = this.normalizeCurrentScore(score);
 		return DiscreteTag.DiscretizeDouble(aux);
 	}
-
 }

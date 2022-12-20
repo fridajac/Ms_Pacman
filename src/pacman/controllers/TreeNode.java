@@ -34,5 +34,8 @@ public class TreeNode {
     public void setAttribute(Attribute chosenAttribute) {
         this.attribute = chosenAttribute;
     }
+
+    public void printSubTree() {
+    }
 }
 

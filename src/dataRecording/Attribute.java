@@ -5,14 +5,18 @@ import java.util.ArrayList;
 public class Attribute {
 
     private String name;
-    private ArrayList<String> conditions;
+    private ArrayList<Condition> conditions;
 
-    public Attribute(String name,  ArrayList<String> conditions) {
+    public Attribute(String name,  ArrayList<Condition> conditions) {
         this.name = name;
         this.conditions = conditions;
     }
 
-    public ArrayList<String> getConditions() {
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<Condition> getConditions() {
         return conditions;
     }
 }
