@@ -115,7 +115,6 @@ public class DataTuple {
 		String[] dataSplit = data.split(";");
 
 		this.DirectionChosen = MOVE.valueOf(dataSplit[0]);
-
 		this.mazeIndex = Integer.parseInt(dataSplit[1]);
 		this.currentLevel = Integer.parseInt(dataSplit[2]);
 		this.pacmanPosition = Integer.parseInt(dataSplit[3]);

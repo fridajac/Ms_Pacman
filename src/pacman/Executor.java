@@ -22,6 +22,7 @@ import pacman.controllers.examples.RandomNonRevPacMan;
 import pacman.controllers.examples.RandomPacMan;
 import pacman.controllers.examples.StarterGhosts;
 import pacman.controllers.examples.StarterPacMan;
+import pacman.entries.pacman.MyPacMan;
 import pacman.game.Game;
 import pacman.game.GameView;
 
@@ -44,7 +45,6 @@ public class Executor
 	public static void main(String[] args)
 	{
 		Executor exec=new Executor();
-		AIController aiController = new AIController();
 		
 		//run multiple games in batch mode - good for testing.
 		int numTrials=10;
@@ -53,10 +53,10 @@ public class Executor
 		
 
 		//run a game in synchronous mode: game waits until controllers respond.
-		//TODO: Here! Run the progam with our own PacManAIController
+		//TODO: Here! Run the program with our own PacManAIController
 		int delay=5;
 		boolean visual=true;
-		exec.runGame(new PacManAIController(),new RandomGhosts(),visual,delay);
+		exec.runGame(new MyPacMan(),new RandomGhosts(),visual,delay);
 
 		///*
 		//run the game in asynchronous mode.

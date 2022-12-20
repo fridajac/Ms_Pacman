@@ -1,9 +1,6 @@
 package pacman.controllers;
 
-import dataRecording.Attribute;
-import dataRecording.Condition;
-import dataRecording.DataTuple;
-import dataRecording.Operator;
+import dataRecording.*;
 import pacman.game.Constants;
 
 import java.util.ArrayList;
@@ -11,15 +8,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static dataRecording.DataSaverLoader.LoadPacManData;
-
 public class AIController {
 
     private final ArrayList<Attribute> attributes;
     private TreeNode decisionTree = null;
 
     public AIController() {
-        DataTuple[] data = LoadPacManData();
+        DataTuple[] data = DataSaverLoader.LoadPacManData();
         //Divide data set in: 80% training data and 20% testing data. Training data is used to create decision tree.
         ArrayList<DataTuple> tuples = new ArrayList<>(Arrays.asList(data));
         int calcPercentage = (int) (data.length * 0.8);
@@ -82,7 +77,7 @@ public class AIController {
      */
     public Constants.MOVE classify(DataTuple sample) {
 
-        if(decisionTree.getChildren() == null){
+        if (decisionTree.getChildren() == null) {
             return decisionTree.getLabel();
         }
         //TODO We should traverse the tree using the game state from sample. How?
